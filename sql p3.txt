@@ -1,0 +1,31 @@
+DROP DATABASE p3;
+CREATE DATABASE p3;
+use p3;
+create table niveau(niveau varchar(20) PRIMARY key);
+create table prof(nomp varchar(30) primary key);
+CREATE table grop(grop varchar(30) PRIMARY key,niveau varchar(20),FOREIGN key(niveau) REFERENCES niveau(niveau),nomp varchar(30),FOREIGN key(nomp) REFERENCES prof(nomp));
+CREATE TABLE emploi(id int auto_increment PRIMARY key,grop varchar(30),emplacement text,dt date,FOREIGN key(grop) REFERENCES grop(grop));
+CREATE table eleve(nom varchar(25) PRIMARY key);
+CREATE table eleve_group(nom varchar(25),grop varchar(30),FOREIGN key(grop) REFERENCES grop(grop),FOREIGN key(nom) REFERENCES eleve(nom),PRIMARY key(grop,nom));
+CREATE TABLE mois(mois int PRIMARY key);
+create  table absence(nbre int auto_increment PRIMARY key,dt date,nom varchar(25),grop varchar(30),FOREIGN key(grop) REFERENCES grop(grop),FOREIGN key(nom) REFERENCES eleve(nom));
+INSERT into mois values(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12);
+
+create table paiement(mois int,nom varchar(25),grop varchar(30),FOREIGN key(grop) REFERENCES grop(grop),FOREIGN key(nom) REFERENCES eleve(nom),FOREIGN KEY(mois) REFERENCES mois(mois),etat varchar(10));
+
+
+
+use p3;
+insert INTO niveau VALUES ("5eme");
+insert into prof values("soufinae");
+insert into grop values("g1","5eme","soufinae");
+insert into eleve values("soufiane");
+insert into eleve_group values("soufiane","g1");
+
+use p3;
+insert into emploi(grop,emplacement,dt) values("g1","images.JFIF","2008-10-29");
+insert into absence(dt,nom,grop) values("2008-10-29","soufiane","g1");
+
+use p3;
+INSERT into paiement values(1,"soufiane","g1","non paié"),(2,"soufiane","g1","non paié"),(3,"soufiane","g1","non paié"),(4,"soufiane","g1","non paié")
+,(5,"soufiane","g1","non paié"),(6,"soufiane","g1","non paié"),(7,"soufiane","g1","non paié"),(8,"soufiane","g1","non paié"),(9,"soufiane","g1","non paié"),(10,"soufiane","g1","non paié"),(11,"soufiane","g1","non paié"),(12,"soufiane","g1","non paié");
