@@ -1,8 +1,0 @@
-
-<?php
-try{                                              
-    $db=new PDO("mysql:host=localhost:3306;dbname=p3","root","root1");
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}catch(PDOException $e){
-    echo "<div class='alert-primary'>".$e->getMessage()."</div>";
-}                                             
